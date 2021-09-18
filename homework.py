@@ -47,7 +47,8 @@ class CaloriesCalculator(Calculator):
         today_remains = self.get_today_remained()
         if today_remains > 0:
             return f'Сегодня можно съесть что-нибудь ещё, ' \
-                   f'но с общей калорийностью не более {int(today_remains)} кКал'
+                   f'но с общей калорийностью не более ' \
+                   f'{int(today_remains)} кКал'
         else:
             return 'Хватит есть!'
 
