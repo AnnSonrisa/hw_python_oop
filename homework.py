@@ -10,7 +10,6 @@ CALORIES_REMAINS = 'Сегодня можно съесть что-нибудь �
 NO_CALORIES = 'Хватит есть!'
 
 
-
 class Record:
     def __init__(self, amount, comment, date=None):
         self.amount = float(amount)
@@ -90,5 +89,3 @@ class CashCalculator(Calculator):
         return CASH_CREDIT.format(
             today_remains_currency=today_remains_currency,
             currency_name=currency_name)
-
-
