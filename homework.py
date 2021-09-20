@@ -88,5 +88,6 @@ class CashCalculator(Calculator):
             return CASH_BALANCE.format(
                 balance=today_remains_currency,
                 currency_name=currency_name)
-        return CASH_DEBT.format(today_remains_currency=today_remains_currency, currency_name=currency_name)
-    
+        return CASH_DEBT.format(
+            today_remains_currency=today_remains_currency,
+            currency_name=currency_name)
