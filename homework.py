@@ -1,13 +1,13 @@
 import datetime as dt
 
 FORMAT_OF_DATE = '%d.%m.%y'
-CASH_BALANCE = '''На сегодня осталось {balance} 
+CASH_BALANCE = '''На сегодня осталось {balance}
 {currency_name}'''
-CASH_DEBT = '''Денег нет, держись: твой долг -  
+CASH_DEBT = '''Денег нет, держись: твой долг -
             {today_remains_currency} {currency_name}'''
 CASH_NO = 'Денег нет, держись'
 EXCEPTION = 'Currency не существует в словаре'
-CALORIES_BALANCE = '''Сегодня можно съесть что-нибудь ещё, 
+CALORIES_BALANCE = '''Сегодня можно съесть что-нибудь ещё,
 но с общей калорийностью не более {int(today_remains)} кКал'''
 CALORIES_STOP = 'Хватит есть!'
 
@@ -34,7 +34,9 @@ class Calculator:
     def get_today_stats(self) -> float:
         """ Подсчет денег/калорий, потраченных сегодня """
         today = dt.date.today()
-        today_amount = sum(record.amount for record in self.records if record.date == today)
+        today_amount = sum[(record.amount
+                           for record in self.records
+                            if record.date == today)]
         return today_amount
 
     def get_week_stats(self) -> float:
@@ -42,7 +44,9 @@ class Calculator:
         now = dt.date.today()
         then = now - dt.timedelta(days=7)
         week_amount = 0
-        week_amount = sum(record.amount for record in self.records if then <= record.date <= now)
+        week_amount = sum[(record.amount
+                           for record in self.records
+                           if then <= record.date <= now)]
         return float(week_amount)
 
     def get_today_remained(self) -> float:
@@ -81,6 +85,8 @@ class CashCalculator(Calculator):
         if not today_remains:
             return CASH_NO
         if today_remains > 0:
-            return CASH_BALANCE.format(balance=today_remains_currency,
-                                       currency_name=currency_name)
+            return CASH_BALANCE.format(
+                balance=today_remains_currency,
+                currency_name=currency_name)
         return CASH_DEBT.format(today_remains_currency=today_remains_currency, currency_name=currency_name)
+    
